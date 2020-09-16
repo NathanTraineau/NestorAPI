@@ -21,6 +21,21 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
   'POST    /createClient': 'client/create',
+  'POST    /deleteClient': 'client/delete',
+  'POST    /updateClient': 'client/update',
+  'POST    /reservationClient': 'client/reservation',
+  'POST    /vacation': 'client/vacation',
+  'GET    /getClient': 'client/read',
+
+  'POST    /createRoom': 'room/create',
+  'POST    /deleteRoom': 'room/delete',
+  'POST    /updateRoom': 'room/update',
+  'GET    /getRoom': 'room/read',
+
+  'POST    /createApartment': 'apartment/create',
+  'POST    /deleteApartment': 'apartment/delete',
+  'POST    /updateApartment': 'apartment/update',
+  'GET    /getApartment': 'apartment/read',
 
 
   /***************************************************************************

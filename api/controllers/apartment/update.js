@@ -1,5 +1,5 @@
 /**
- * Client Controller update actions
+ * Apartment Controller update actions
  *
  */
 
@@ -41,7 +41,7 @@ module.exports = {
   },
   exits: {
     success: {
-      description: 'Client successfully added',
+      description: 'Apartment successfully updated',
     },
     badRequest: {
       description: 'Bad request, error from the client',
@@ -55,12 +55,12 @@ module.exports = {
 
   fn: async (inputs, exits) => {
 
-    let updatedApartment= await Apartment.updateOne({id: inputs.id})
+    let updatedApartment = await Apartment.updateOne({id: inputs.id})
     .set(inputs)
     .intercept('*', 'serverError');
 
     if (!updatedApartment){
-      return exits.badRequest();
+      return exits.badRequest('The apartment doesn\'t exists.');
     }
 
     return exits.success(updatedApartment);

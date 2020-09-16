@@ -31,7 +31,7 @@ module.exports = {
     let deletedClient = await Client.findOne({id : inputs.id});
 
     if (!deletedClient){
-      return exits.badRequest();
+      return exits.badRequest('The client doesn\'t exists.');
     }
 
     await Client.destroyOne({id: inputs.id})

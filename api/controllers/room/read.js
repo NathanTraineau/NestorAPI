@@ -27,13 +27,12 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    let client = await Client.find({id : inputs.id})
-    .intercept('*', 'serverError')
-    .populate('room');
+    let room = await Room.find({id : inputs.id})
+    .intercept('*', 'serverError');
 
-    if (!client){
-      return exits.badRequest('The client doesn\'t exists.');
+    if (!room){
+      return exits.badRequest('The room doesn\'t exists.');
     }
-    return exits.success(client);
+    return exits.success(room);
   }
 };

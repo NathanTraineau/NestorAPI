@@ -31,13 +31,13 @@ module.exports = {
     let deletedApartment = await Apartment.findOne({id : inputs.id});
 
     if (!deletedApartment){
-      return exits.badRequest();
+      return exits.badRequest('The apartment doesn\'t exists.');
     }
 
-    await Apartment.destroyOne({id: inputs.id})
+    await Room.destroy({apartment: inputs.id})
         .intercept('*', 'serverError');
 
-    await Room.destroyOne({apartment: inputs.id})
+    await Apartment.destroy({id: inputs.id})
         .intercept('*', 'serverError');
 
     return exits.success();

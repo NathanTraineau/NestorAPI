@@ -32,7 +32,7 @@ module.exports = {
     .populate('room');
 
     if (!apartment){
-      return exits.badRequest();
+      return exits.badRequest('The apartment doesn\'t exists.');
     }
     return exits.success(apartment);
   }

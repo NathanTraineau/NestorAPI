@@ -1,8 +1,9 @@
 /**
- * Client.js
+ * Room.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
+ *
  */
 
 module.exports = {
@@ -12,39 +13,18 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    firstName: {
-      type: 'string',
-      required: true,
-      maxLength: 100,
-      example: 'Jean'
+
+    number: {
+      type: 'number',
+      example: '2'
     },
-    lastName : {
-      type: 'string',
-      required: true,
-      maxLength: 100,
-      example: 'Dupont'
+    area : {
+      type: 'number',
+      example: '10.45'
     },
-    email: {
-      type: 'string',
-      unique: true,
-      required: true,
-      isEmail: true,
-      example: 'nathan.trn@orange.fr'
-    },
-    phoneNumber : {
-      type: 'string',
-      required: true,
-      example: '0637492131'
-    },
-    birthDate : {
-      type: 'string',
-      required: true,
-      example: '30/11/1997'
-    },
-    nationality : {
-      type: 'string',
-      required : true,
-      example: 'Français'
+    price: {
+      type: 'number',
+      example: '69000'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -56,12 +36,19 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    room : {
-      collection : 'room',
-      via : 'isReserved',
+    isReserved : {
+      model : 'Client',
+    },
+    apartment : {
+      model : 'Apartment',
+      required : true,
     }
-
   },
-
+  exits : {
+    forbidden: {
+      description: 'You cannot delete this room, an apartment must contain at least one room.',
+      responseType: 'forbidden'
+    },
+  },
 };
 

@@ -1,5 +1,5 @@
 /**
- * Client.js
+ * Apartment.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -12,39 +12,23 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    firstName: {
+
+    name: {
       type: 'string',
       required: true,
-      maxLength: 100,
-      example: 'Jean'
+      example: 'Appartement 45'
     },
-    lastName : {
+    street : {
       type: 'string',
-      required: true,
-      maxLength: 100,
-      example: 'Dupont'
+      example: 'Avenue Roger Salengro'
     },
-    email: {
+    zipCode: {
       type: 'string',
-      unique: true,
-      required: true,
-      isEmail: true,
-      example: 'nathan.trn@orange.fr'
+      example: '69000'
     },
-    phoneNumber : {
+    city : {
       type: 'string',
-      required: true,
-      example: '0637492131'
-    },
-    birthDate : {
-      type: 'string',
-      required: true,
-      example: '30/11/1997'
-    },
-    nationality : {
-      type: 'string',
-      required : true,
-      example: 'Français'
+      example: 'Lyon'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -58,10 +42,8 @@ module.exports = {
 
     room : {
       collection : 'room',
-      via : 'isReserved',
+      via : 'apartment'
     }
-
   },
-
 };
 

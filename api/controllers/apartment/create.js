@@ -1,14 +1,7 @@
 /**
  * Client Controller create actions
  *
- * - `id` : String, ID unique ;
-- `name` : String, nom de l'appartement ;
-- `street` : String, rue de l'appartement ;
-- `zipCode` : String, code postal ;
-- `city` : String, ville ;
  */
-
-const Room = require("../../models/Room");
 
 
 module.exports = {
@@ -57,8 +50,7 @@ module.exports = {
           .intercept('*', 'serverError')
           .fetch();
 
-    await Room
-    .create({
+    await Room.create({
       apartment : newApartment.id
     });
 
