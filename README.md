@@ -12,7 +12,7 @@ To develop this API used the framework SailsJS :
 
 ### How to begin
 
-In order to launch the app you may clone it then enter the following commands at the root of the project:
+In order to launch the app you may clone the repository then enter the following commands at the root of the project:
 
 `npm i`
 
@@ -29,7 +29,7 @@ The database adapter used for production is sails-postgresql.
 I took about six hours to implement this app.
 I chose to take 1 hour on the conception.
 3 and a half hour developing the code, refactoring it.
-1 and a half hour to huild the swagger (something that I never did before with sails) and deploy the application on Heroku.
+1 and a half hour to build the swagger (something that I never did before with sails) and deploy the application on Heroku.
 
 ### Improvement
 
