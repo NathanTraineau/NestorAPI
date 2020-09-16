@@ -1,43 +1,41 @@
 /**
- * Client Controller create actions
+ * Client Controller update actions
  *
  */
 
 
 module.exports = {
   inputs: {
+    id: {
+      type: 'string',
+      required : true
+    },
     firstName: {
       type: 'string',
-      required: true,
       maxLength: 100,
       example: 'Jean'
     },
     lastName : {
       type: 'string',
-      required: true,
       maxLength: 100,
       example: 'Dupont'
     },
     email: {
       type: 'string',
       unique: true,
-      required: true,
       isEmail: true,
       example: 'nathan.trn@orange.fr'
     },
     phoneNumber : {
       type: 'string',
-      required: true,
       example: '0637492131'
     },
     birthDate : {
       type: 'string',
-      required: true,
       example: '30/11/1997'
     },
     nationality : {
       type: 'string',
-      required : true,
       example: 'Français'
     },
     room : {
@@ -52,25 +50,24 @@ module.exports = {
       description: 'Bad request, error from the client',
       responseType: 'badRequest'
     },
-    unauthorized: {
-      description: 'Unauthorized access, missing or invalid authorization access',
-      responseType: 'unauthorized'
-    },
-    serverError: {
-      description: 'Internal server error from create client',
+    error: {
+      description: 'Internal server error from update client',
       responseType: 'serverError'
     }
   },
 
   fn: async (inputs, exits) => {
 
-    const newClient = await Client
-          .create(inputs)
-          .intercept('*', 'serverError')
-          .fetch();
+    let updatedClient= await Client.updateOne({id: inputs.id})
+    .set(inputs)
+    .intercept('*', 'serverError');
 
-    
+    if (!updatedClient){
+      return exits.badRequest();
+    }
 
-    return exits.success(newClient);
+    return exits.success(updatedClient);
   }
 };
+
+
