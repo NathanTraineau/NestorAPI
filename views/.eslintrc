@@ -16,6 +16,7 @@
     "../assets/.eslintrc"
   ],
   "rules": {
-    "eol-last": [0]
+    "eol-last": [0],
+    "linebreak-style": 0
   }
 }
