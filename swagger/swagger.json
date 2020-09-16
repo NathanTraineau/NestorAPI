@@ -1,0 +1,4798 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Swagger Json",
+    "description": "This is a generated swagger json for your sails project",
+    "termsOfService": "http://example.com/terms",
+    "contact": {
+      "name": "Theophilus Omoregbee",
+      "url": "http://github.com/theo4u",
+      "email": "theo4u@ymail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:1337/"
+    }
+  ],
+  "externalDocs": {
+    "url": "https://theoomoregbee.github.io/"
+  },
+  "tags": [
+    {
+      "name": "Apartment",
+      "description": "Sails blueprint actions for the **Apartment** model"
+    },
+    {
+      "name": "Client",
+      "description": "Sails blueprint actions for the **Client** model"
+    },
+    {
+      "name": "Room",
+      "description": "Sails blueprint actions for the **Room** model"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "apartment": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/apartment-without-required-constraint"
+          },
+          {
+            "required": [
+              "name"
+            ]
+          }
+        ]
+      },
+      "apartment-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Apartment**",
+        "properties": {
+          "createdAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "updatedAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "name": {
+            "type": "string",
+            "example": "Appartement 45"
+          },
+          "street": {
+            "type": "string",
+            "example": "Avenue Roger Salengro"
+          },
+          "zipCode": {
+            "type": "string",
+            "example": "69000"
+          },
+          "city": {
+            "type": "string",
+            "example": "Lyon"
+          },
+          "room": {
+            "description": "Array of **room**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/room"
+            }
+          }
+        }
+      },
+      "client": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/client-without-required-constraint"
+          },
+          {
+            "required": [
+              "firstName",
+              "lastName",
+              "email",
+              "phoneNumber",
+              "birthDate",
+              "nationality"
+            ]
+          }
+        ]
+      },
+      "client-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Client**",
+        "properties": {
+          "createdAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "updatedAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jean",
+            "maxLength": 100
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Dupont",
+            "maxLength": 100
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "nathan.trn@orange.fr",
+            "uniqueItems": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "example": "0637492131"
+          },
+          "birthDate": {
+            "type": "string",
+            "example": "30/11/1997"
+          },
+          "nationality": {
+            "type": "string",
+            "example": "Français"
+          },
+          "room": {
+            "description": "Array of **room**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/room"
+            }
+          }
+        }
+      },
+      "room": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/room-without-required-constraint"
+          },
+          {
+            "required": [
+              "apartment"
+            ]
+          }
+        ]
+      },
+      "room-without-required-constraint": {
+        "type": "object",
+        "description": "Sails ORM Model **Room**",
+        "properties": {
+          "createdAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "updatedAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "number": {
+            "type": "number",
+            "format": "double",
+            "example": "2"
+          },
+          "area": {
+            "type": "number",
+            "format": "double",
+            "example": "10.45"
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "example": "69000"
+          },
+          "isReserved": {
+            "description": "JSON dictionary representing the **client** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/client"
+              }
+            ]
+          },
+          "apartment": {
+            "description": "JSON dictionary representing the **apartment** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/apartment"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "parameters": {
+      "ModelPKParam-client": {
+        "in": "path",
+        "name": "_id",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64",
+          "uniqueItems": true,
+          "description": "Note Sails special attributes: autoIncrement"
+        },
+        "description": "The desired **Client** record's primary key value"
+      },
+      "ModelPKParam-room": {
+        "in": "path",
+        "name": "_id",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64",
+          "uniqueItems": true,
+          "description": "Note Sails special attributes: autoIncrement"
+        },
+        "description": "The desired **Room** record's primary key value"
+      },
+      "ModelPKParam-apartment": {
+        "in": "path",
+        "name": "_id",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64",
+          "uniqueItems": true,
+          "description": "Note Sails special attributes: autoIncrement"
+        },
+        "description": "The desired **Apartment** record's primary key value"
+      },
+      "AttributeFilterParam": {
+        "in": "query",
+        "name": "_*_",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "To filter results based on a particular attribute, specify a query parameter with the same name as the attribute defined on your model. For instance, if our `Purchase` model has an `amount` attribute, we could send `GET /purchase?amount=99.99` to return a list of $99.99 purchases."
+      },
+      "WhereQueryParam": {
+        "in": "query",
+        "name": "where",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Instead of filtering based on a specific attribute, you may instead choose to provide a `where` parameter with the WHERE piece of a [Waterline criteria](https://sailsjs.com/documentation/concepts/models-and-orm/query-language), _encoded as a JSON string_. This allows you to take advantage of `contains`, `startsWith`, and other sub-attribute criteria modifiers for more powerful `find()` queries.\n\ne.g. `?where={\"name\":{\"contains\":\"theodore\"}}`"
+      },
+      "LimitQueryParam": {
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "The maximum number of records to send back (useful for pagination). Defaults to 30."
+      },
+      "SkipQueryParam": {
+        "in": "query",
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "The number of records to skip (useful for pagination)."
+      },
+      "SortQueryParam": {
+        "in": "query",
+        "name": "sort",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "The sort order. By default, returned records are sorted by primary key value in ascending order.\n\ne.g. `?sort=lastName%20ASC`"
+      }
+    }
+  },
+  "paths": {
+    "/createClient": {
+      "post": {
+        "summary": "Create Client",
+        "description": "Create a new **Client** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Client instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/client"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteClient": {
+      "post": {
+        "summary": "/deleteClient",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client resource successfully deleted"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateClient": {
+      "post": {
+        "summary": "Update Client",
+        "description": "Update an existing **Client** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Client instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/client-without-required-constraint"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservationClient": {
+      "post": {
+        "summary": "/reservationClient",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from update client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room does not exists"
+          },
+          "403": {
+            "description": "Forbidden, the room is already reserved or the client already have a room."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/vacation": {
+      "post": {
+        "summary": "/vacation",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from update client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room does not exists"
+          },
+          "403": {
+            "description": "Forbidden, the room is already reserved or the client already have a room."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/getClient": {
+      "get": {
+        "summary": "/getClient",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource successfully deleted"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/createRoom": {
+      "post": {
+        "summary": "Create Room",
+        "description": "Create a new **Room** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "in": "query",
+            "name": "apartment",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Room successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create room"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room given does not exists."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Room instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/room"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteRoom": {
+      "post": {
+        "summary": "/deleteRoom",
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Apartment resource successfully deleted"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "403": {
+            "description": "Forbidden, the apartment cannot have less than one room."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateRoom": {
+      "post": {
+        "summary": "Update Room",
+        "description": "Update an existing **Room** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Room successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Room instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/room-without-required-constraint"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getRoom": {
+      "get": {
+        "summary": "/getRoom",
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource successfully deleted"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/createApartment": {
+      "post": {
+        "summary": "Create Apartment",
+        "description": "Create a new **Apartment** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Appartement 45"
+            }
+          },
+          {
+            "in": "query",
+            "name": "street",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Avenue Roger Salengro"
+            }
+          },
+          {
+            "in": "query",
+            "name": "zipCode",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "69000"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Lyon"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create apartment"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Apartment instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apartment"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteApartment": {
+      "post": {
+        "summary": "/deleteApartment",
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Apartment resource successfully deleted"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateApartment": {
+      "post": {
+        "summary": "Update Apartment",
+        "description": "Update an existing **Apartment** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Apartment successfully updated"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Apartment instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apartment-without-required-constraint"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getApartment": {
+      "get": {
+        "summary": "/getApartment",
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource successfully deleted"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/find": {
+      "get": {
+        "summary": "List Apartment (find where) *",
+        "description": "Find a list of **Apartment** records that match the specified criteria.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-where"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AttributeFilterParam"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a paged list of **Apartment** records that match the specified criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/apartment"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/find/{_id}": {
+      "get": {
+        "summary": "Get Apartment (find one) *",
+        "description": "Look up the **Apartment** record with the specified ID.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-one",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-one"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a single **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response denoting **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/create": {
+      "get": {
+        "summary": "Create Apartment *",
+        "description": "Create a new **Apartment** record.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Appartement 45"
+            }
+          },
+          {
+            "in": "query",
+            "name": "street",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Avenue Roger Salengro"
+            }
+          },
+          {
+            "in": "query",
+            "name": "zipCode",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "69000"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Lyon"
+            }
+          },
+          {
+            "in": "query",
+            "name": "createdAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "updatedAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "uniqueItems": true,
+              "description": "Note Sails special attributes: autoIncrement"
+            },
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "schema": {
+              "description": "Array of **room**'s or array of FK's when creating / updating / not populated",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/room"
+              }
+            },
+            "description": "Array of **room**'s or array of FK's when creating / updating / not populated"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create apartment"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/update/{_id}": {
+      "get": {
+        "summary": "Update Apartment *",
+        "description": "Update an existing **Apartment** record.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "query",
+            "name": "createdAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "updatedAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "example": "Appartement 45"
+            }
+          },
+          {
+            "in": "query",
+            "name": "street",
+            "schema": {
+              "type": "string",
+              "example": "Avenue Roger Salengro"
+            }
+          },
+          {
+            "in": "query",
+            "name": "zipCode",
+            "schema": {
+              "type": "string",
+              "example": "69000"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "schema": {
+              "type": "string",
+              "example": "Lyon"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "schema": {
+              "description": "Array of **room**'s or array of FK's when creating / updating / not populated",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/room"
+              }
+            },
+            "description": "Array of **room**'s or array of FK's when creating / updating / not populated"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Apartment successfully updated"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        }
+      }
+    },
+    "/apartment/destroy/{_id}": {
+      "get": {
+        "summary": "Delete Apartment (destroy) *",
+        "description": "Delete the **Apartment** record with the specified ID.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/destroy",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/destroy"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a JSON dictionary representing the destroyed **Apartment** instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot destroy, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/{_id}/{association}/add/{childid}": {
+      "get": {
+        "summary": "Add to for Apartment *",
+        "description": "Add a foreign record to one of this **Apartment** record's collections.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/add-to",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/add-to"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Apartment** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform add to, **Apartment** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/{_id}/{association}/replace": {
+      "get": {
+        "summary": "Replace for Apartment *",
+        "description": "Replace all of the child records in one of this **Apartment** record's associations.\n\nOnly one of the query parameters, that matches the **association** path parameter, should be specified.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/replace",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/replace"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "description": "**Apartment** record's foreign key values to use as the replacement for this collection (**room** association)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double",
+                "description": "**Apartment** record's foreign key values to use as the replacement for this collection (**room** association)",
+                "uniqueItems": true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot replace, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/{_id}/{association}/remove/{childid}": {
+      "get": {
+        "summary": "Remove from for Apartment *",
+        "description": "Remove a foreign record from one of this **Apartment** record's collections.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/remove-from",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/remove-from"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Apartment** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform remove from, **Apartment** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/find": {
+      "get": {
+        "summary": "List Client (find where) *",
+        "description": "Find a list of **Client** records that match the specified criteria.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-where"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AttributeFilterParam"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a paged list of **Client** records that match the specified criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/client"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/find/{_id}": {
+      "get": {
+        "summary": "Get Client (find one) *",
+        "description": "Look up the **Client** record with the specified ID.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-one",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-one"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a single **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response denoting **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/create": {
+      "get": {
+        "summary": "Create Client *",
+        "description": "Create a new **Client** record.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "createdAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "updatedAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "uniqueItems": true,
+              "description": "Note Sails special attributes: autoIncrement"
+            },
+            "description": "Note Sails special attributes: autoIncrement"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/update/{_id}": {
+      "get": {
+        "summary": "Update Client *",
+        "description": "Update an existing **Client** record.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "query",
+            "name": "createdAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "updatedAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "schema": {
+              "description": "Array of **room**'s or array of FK's when creating / updating / not populated",
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/room"
+              }
+            },
+            "description": "Array of **room**'s or array of FK's when creating / updating / not populated"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        }
+      }
+    },
+    "/client/destroy/{_id}": {
+      "get": {
+        "summary": "Delete Client (destroy) *",
+        "description": "Delete the **Client** record with the specified ID.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/destroy",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/destroy"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a JSON dictionary representing the destroyed **Client** instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot destroy, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/{_id}/{association}/add/{childid}": {
+      "get": {
+        "summary": "Add to for Client *",
+        "description": "Add a foreign record to one of this **Client** record's collections.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/add-to",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/add-to"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Client** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform add to, **Client** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/{_id}/{association}/replace": {
+      "get": {
+        "summary": "Replace for Client *",
+        "description": "Replace all of the child records in one of this **Client** record's associations.\n\nOnly one of the query parameters, that matches the **association** path parameter, should be specified.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/replace",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/replace"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "description": "**Client** record's foreign key values to use as the replacement for this collection (**room** association)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double",
+                "description": "**Client** record's foreign key values to use as the replacement for this collection (**room** association)",
+                "uniqueItems": true
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot replace, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/{_id}/{association}/remove/{childid}": {
+      "get": {
+        "summary": "Remove from for Client *",
+        "description": "Remove a foreign record from one of this **Client** record's collections.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/remove-from",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/remove-from"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Client** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform remove from, **Client** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/room/find": {
+      "get": {
+        "summary": "List Room (find where) *",
+        "description": "Find a list of **Room** records that match the specified criteria.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-where"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AttributeFilterParam"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,isReserved,apartment"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a paged list of **Room** records that match the specified criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/room"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/room/find/{_id}": {
+      "get": {
+        "summary": "Get Room (find one) *",
+        "description": "Look up the **Room** record with the specified ID.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-one",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-one"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,isReserved,apartment"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a single **Room** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/room"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response denoting **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/room/create": {
+      "get": {
+        "summary": "Create Room *",
+        "description": "Create a new **Room** record.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "in": "query",
+            "name": "apartment",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "createdAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "updatedAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "uniqueItems": true,
+              "description": "Note Sails special attributes: autoIncrement"
+            },
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          {
+            "in": "query",
+            "name": "isReserved",
+            "schema": {
+              "description": "JSON dictionary representing the **client** instance or FK when creating / updating / not populated",
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/client"
+                }
+              ]
+            },
+            "description": "JSON dictionary representing the **client** instance or FK when creating / updating / not populated"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Room successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create room"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room given does not exists."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/room/update/{_id}": {
+      "get": {
+        "summary": "Update Room *",
+        "description": "Update an existing **Room** record.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          },
+          {
+            "in": "query",
+            "name": "createdAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "updatedAt",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "uniqueItems": true,
+              "description": "Note Sails special attributes: autoIncrement"
+            },
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          {
+            "in": "query",
+            "name": "isReserved",
+            "schema": {
+              "description": "JSON dictionary representing the **client** instance or FK when creating / updating / not populated",
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/client"
+                }
+              ]
+            },
+            "description": "JSON dictionary representing the **client** instance or FK when creating / updating / not populated"
+          },
+          {
+            "in": "query",
+            "name": "apartment",
+            "schema": {
+              "description": "JSON dictionary representing the **apartment** instance or FK when creating / updating / not populated",
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              ]
+            },
+            "description": "JSON dictionary representing the **apartment** instance or FK when creating / updating / not populated"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Room successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        }
+      }
+    },
+    "/room/destroy/{_id}": {
+      "get": {
+        "summary": "Delete Room (destroy) *",
+        "description": "Delete the **Room** record with the specified ID.\n\n(\\*) Note that this is a [Sails blueprint shortcut route](https://sailsjs.com/documentation/concepts/blueprints/blueprint-routes#?shortcut-blueprint-routes) (recommended for **development-mode only**)",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/destroy",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/destroy"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a JSON dictionary representing the destroyed **Room** instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/room"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot destroy, **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment": {
+      "get": {
+        "summary": "List Apartment (find where)",
+        "description": "Find a list of **Apartment** records that match the specified criteria.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-where"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AttributeFilterParam"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a paged list of **Apartment** records that match the specified criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/apartment"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Apartment",
+        "description": "Create a new **Apartment** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Appartement 45"
+            }
+          },
+          {
+            "in": "query",
+            "name": "street",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Avenue Roger Salengro"
+            }
+          },
+          {
+            "in": "query",
+            "name": "zipCode",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "69000"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Lyon"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create apartment"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Apartment instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apartment"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/apartment/{_id}": {
+      "get": {
+        "summary": "Get Apartment (find one)",
+        "description": "Look up the **Apartment** record with the specified ID.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-one",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-one"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a single **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response denoting **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Apartment",
+        "description": "Update an existing **Apartment** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Apartment successfully updated"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Apartment instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apartment-without-required-constraint"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Apartment (destroy)",
+        "description": "Delete the **Apartment** record with the specified ID.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/destroy",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/destroy"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a JSON dictionary representing the destroyed **Apartment** instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot destroy, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/{_id}/{association}/{childid}": {
+      "put": {
+        "summary": "Add to for Apartment",
+        "description": "Add a foreign record to one of this **Apartment** record's collections.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/add-to",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/add-to"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Apartment** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform add to, **Apartment** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove from for Apartment",
+        "description": "Remove a foreign record from one of this **Apartment** record's collections.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/remove-from",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/remove-from"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Apartment** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform remove from, **Apartment** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/apartment/{_id}/{association}": {
+      "put": {
+        "summary": "Replace for Apartment",
+        "description": "Replace all of the child records in one of this **Apartment** record's associations.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/replace",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/replace"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Apartment** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/apartment"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot replace, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "The primary key values (usually IDs) of the child records to use as the new members of this collection",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "format": "double",
+                      "description": "**Apartment** record's foreign key values to use as the replacement for this collection (**room** association)",
+                      "uniqueItems": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Populate association for Apartment",
+        "description": "Populate and return foreign record(s) for the given association of this **Apartment** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/populate-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/populate-where"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,name,street,zipCode,city,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the list of associated records as JSON dictionaries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/room"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot populate, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client": {
+      "get": {
+        "summary": "List Client (find where)",
+        "description": "Find a list of **Client** records that match the specified criteria.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-where"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AttributeFilterParam"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a paged list of **Client** records that match the specified criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/client"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Client",
+        "description": "Create a new **Client** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Client instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/client"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/client/{_id}": {
+      "get": {
+        "summary": "Get Client (find one)",
+        "description": "Look up the **Client** record with the specified ID.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-one",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-one"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,room"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a single **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response denoting **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Client",
+        "description": "Update an existing **Client** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Client instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/client-without-required-constraint"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Client (destroy)",
+        "description": "Delete the **Client** record with the specified ID.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/destroy",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/destroy"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a JSON dictionary representing the destroyed **Client** instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot destroy, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/{_id}/{association}/{childid}": {
+      "put": {
+        "summary": "Add to for Client",
+        "description": "Add a foreign record to one of this **Client** record's collections.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/add-to",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/add-to"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Client** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform add to, **Client** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remove from for Client",
+        "description": "Remove a foreign record from one of this **Client** record's collections.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/remove-from",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/remove-from"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "in": "path",
+            "name": "childid",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "number",
+                  "format": "double",
+                  "description": "**Client** record's foreign key values to use as the replacement for this collection (**room** association)",
+                  "uniqueItems": true
+                }
+              ]
+            },
+            "description": "The desired target association record's foreign key value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot perform remove from, **Client** record OR **FK record** with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/client/{_id}/{association}": {
+      "put": {
+        "summary": "Replace for Client",
+        "description": "Replace all of the child records in one of this **Client** record's associations.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/replace",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/replace"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the newly updated **Client** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/client"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot replace, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "The primary key values (usually IDs) of the child records to use as the new members of this collection",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "number",
+                      "format": "double",
+                      "description": "**Client** record's foreign key values to use as the replacement for this collection (**room** association)",
+                      "uniqueItems": true
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Populate association for Client",
+        "description": "Populate and return foreign record(s) for the given association of this **Client** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/populate-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/populate-where"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "room"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,firstName,lastName,email,phoneNumber,birthDate,nationality,room"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the list of associated records as JSON dictionaries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/room"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot populate, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/room": {
+      "get": {
+        "summary": "List Room (find where)",
+        "description": "Find a list of **Room** records that match the specified criteria.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-where"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/AttributeFilterParam"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,isReserved,apartment"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a paged list of **Room** records that match the specified criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/room"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create Room",
+        "description": "Create a new **Room** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "in": "query",
+            "name": "apartment",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Room successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create room"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room given does not exists."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Room instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/room"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/room/{_id}": {
+      "get": {
+        "summary": "Get Room (find one)",
+        "description": "Look up the **Room** record with the specified ID.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/find-one",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/find-one"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "populate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "false,isReserved,apartment"
+            },
+            "description": "If specified, overide the default automatic population process. Accepts a comma-separated list of attribute names for which to populate record values, or specify `false` to have no attributes populated."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a single **Room** record as a JSON dictionary",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/room"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response denoting **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Room",
+        "description": "Update an existing **Room** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Room successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Room instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/room-without-required-constraint"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Room (destroy)",
+        "description": "Delete the **Room** record with the specified ID.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/destroy",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/destroy"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with a JSON dictionary representing the destroyed **Room** instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/room"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot destroy, **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/room/{_id}/{association}": {
+      "get": {
+        "summary": "Populate association for Room",
+        "description": "Populate and return foreign record(s) for the given association of this **Room** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/populate-where",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/populate-where"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          },
+          {
+            "in": "path",
+            "name": "association",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "isReserved",
+                "apartment"
+              ]
+            },
+            "description": "The name of the association"
+          },
+          {
+            "$ref": "#/components/parameters/WhereQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SkipQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/SortQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "select",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to include in the result, specified as a comma-delimited list. By default, all attributes are selected. Not valid for plural (“collection”) association attributes."
+          },
+          {
+            "in": "query",
+            "name": "omit",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "createdAt,updatedAt,id,number,area,price,isReserved,apartment"
+            },
+            "description": "The attributes to exclude from the result, specified as a comma-delimited list. Cannot be used in conjuction with `select`. Not valid for plural (“collection”) association attributes."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Responds with the list of associated records as JSON dictionaries",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/client"
+                      },
+                      {
+                        "$ref": "#/components/schemas/apartment"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cannot populate, **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
