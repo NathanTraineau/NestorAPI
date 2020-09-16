@@ -20,9 +20,9 @@ In order to launch the app you may clone it then enter the following commands at
 
 Once you have entered it a developing server will start at the port 1337 of your localhost.
 
-The local database is sails-disk
+The local database adapter is sails-disk
 
-The database used for production is sails-postgresql.
+The database adapter used for production is sails-postgresql.
 
 ### FeedBacks
 
