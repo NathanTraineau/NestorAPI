@@ -15,8 +15,7 @@
     "sails-hook-orm": "^2.1.1",
     "sails-hook-sockets": "^2.0.0",
     "sails-hook-swagger-generator": "^3.3.0",
-    "sails-postgresql": "^1.0.2",
-    "swagger-editor-dist": "^3.13.1"
+    "sails-postgresql": "^1.0.2"
   },
   "devDependencies": {
     "eslint": "5.16.0"

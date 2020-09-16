@@ -251,7 +251,7 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     onlyAllowOrigins: [
-      'https://nestorapi.herokuapp.com/',
+      'https://nestorapi.herokuapp.com',
     ],
 
 
