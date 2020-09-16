@@ -1,0 +1,1245 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Swagger Json",
+    "description": "This is a generated swagger json for your sails project",
+    "termsOfService": "http://example.com/terms",
+    "contact": {
+      "name": "Theophilus Omoregbee",
+      "url": "http://github.com/theo4u",
+      "email": "theo4u@ymail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "url": "https://theoomoregbee.github.io/"
+  },
+  "tags": [
+    {
+      "name": "Apartment"
+    },
+    {
+      "name": "Client"
+    },
+    {
+      "name": "Room"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "apartment": {
+        "type": "object",
+        "description": "Sails ORM Model **Apartment**",
+        "properties": {
+          "createdAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "updatedAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "name": {
+            "type": "string",
+            "example": "Appartement 45"
+          },
+          "street": {
+            "type": "string",
+            "example": "Avenue Roger Salengro"
+          },
+          "zipCode": {
+            "type": "string",
+            "example": "69000"
+          },
+          "city": {
+            "type": "string",
+            "example": "Lyon"
+          },
+          "room": {
+            "description": "Array of **room**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/room"
+            }
+          }
+        }
+      },
+      "client": {
+        "type": "object",
+        "description": "Sails ORM Model **Client**",
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "phoneNumber",
+          "birthDate",
+          "nationality"
+        ],
+        "properties": {
+          "createdAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "updatedAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "Jean",
+            "maxLength": 100
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Dupont",
+            "maxLength": 100
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "nathan.trn@orange.fr",
+            "uniqueItems": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "example": "0637492131"
+          },
+          "birthDate": {
+            "type": "string",
+            "example": "30/11/1997"
+          },
+          "nationality": {
+            "type": "string",
+            "example": "Français"
+          },
+          "room": {
+            "description": "Array of **room**'s or array of FK's when creating / updating / not populated",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/room"
+            }
+          }
+        }
+      },
+      "room": {
+        "type": "object",
+        "description": "Sails ORM Model **Room**",
+        "required": [
+          "apartment"
+        ],
+        "properties": {
+          "createdAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "updatedAt": {
+            "type": "number",
+            "format": "double"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "uniqueItems": true,
+            "description": "Note Sails special attributes: autoIncrement"
+          },
+          "number": {
+            "type": "number",
+            "format": "double",
+            "example": "2"
+          },
+          "area": {
+            "type": "number",
+            "format": "double",
+            "example": "10.45"
+          },
+          "price": {
+            "type": "number",
+            "format": "double",
+            "example": "69000"
+          },
+          "isReserved": {
+            "description": "JSON dictionary representing the **client** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/client"
+              }
+            ]
+          },
+          "apartment": {
+            "description": "JSON dictionary representing the **apartment** instance or FK when creating / updating / not populated",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/apartment"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "parameters": {
+      "ModelPKParam-client": {
+        "in": "path",
+        "name": "_id",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64",
+          "uniqueItems": true,
+          "description": "Note Sails special attributes: autoIncrement"
+        },
+        "description": "The desired **Client** record's primary key value"
+      },
+      "ModelPKParam-room": {
+        "in": "path",
+        "name": "_id",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64",
+          "uniqueItems": true,
+          "description": "Note Sails special attributes: autoIncrement"
+        },
+        "description": "The desired **Room** record's primary key value"
+      },
+      "ModelPKParam-apartment": {
+        "in": "path",
+        "name": "_id",
+        "required": true,
+        "schema": {
+          "type": "integer",
+          "format": "int64",
+          "uniqueItems": true,
+          "description": "Note Sails special attributes: autoIncrement"
+        },
+        "description": "The desired **Apartment** record's primary key value"
+      },
+      "AttributeFilterParam": {
+        "in": "query",
+        "name": "_*_",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "To filter results based on a particular attribute, specify a query parameter with the same name as the attribute defined on your model. For instance, if our `Purchase` model has an `amount` attribute, we could send `GET /purchase?amount=99.99` to return a list of $99.99 purchases."
+      },
+      "WhereQueryParam": {
+        "in": "query",
+        "name": "where",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "Instead of filtering based on a specific attribute, you may instead choose to provide a `where` parameter with the WHERE piece of a [Waterline criteria](https://sailsjs.com/documentation/concepts/models-and-orm/query-language), _encoded as a JSON string_. This allows you to take advantage of `contains`, `startsWith`, and other sub-attribute criteria modifiers for more powerful `find()` queries.\n\ne.g. `?where={\"name\":{\"contains\":\"theodore\"}}`"
+      },
+      "LimitQueryParam": {
+        "in": "query",
+        "name": "limit",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "The maximum number of records to send back (useful for pagination). Defaults to 30."
+      },
+      "SkipQueryParam": {
+        "in": "query",
+        "name": "skip",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "The number of records to skip (useful for pagination)."
+      },
+      "SortQueryParam": {
+        "in": "query",
+        "name": "sort",
+        "required": false,
+        "schema": {
+          "type": "string"
+        },
+        "description": "The sort order. By default, returned records are sorted by primary key value in ascending order.\n\ne.g. `?sort=lastName%20ASC`"
+      }
+    }
+  },
+  "paths": {
+    "/createClient": {
+      "post": {
+        "summary": "Create Client",
+        "description": "Create a new **Client** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Client instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/client"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteClient": {
+      "post": {
+        "summary": "/deleteClient",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client resource successfully deleted"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateClient": {
+      "post": {
+        "summary": "Update Client",
+        "description": "Update an existing **Client** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-client"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Client** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Client instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/client-without-required-constraint"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservationClient": {
+      "post": {
+        "summary": "/reservationClient",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "room",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from update client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room does not exists"
+          },
+          "403": {
+            "description": "Forbidden, the room is already reserved or the client already have a room."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/vacation": {
+      "post": {
+        "summary": "/vacation",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from update client"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room does not exists"
+          },
+          "403": {
+            "description": "Forbidden, the room is already reserved or the client already have a room."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/getClient": {
+      "get": {
+        "summary": "/getClient",
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource successfully deleted"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/createRoom": {
+      "post": {
+        "summary": "Create Room",
+        "description": "Create a new **Room** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "in": "query",
+            "name": "apartment",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Room successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create room"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, the room given does not exists."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Room instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/room"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteRoom": {
+      "post": {
+        "summary": "/deleteRoom",
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Apartment resource successfully deleted"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "403": {
+            "description": "Forbidden, the apartment cannot have less than one room."
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateRoom": {
+      "post": {
+        "summary": "Update Room",
+        "description": "Update an existing **Room** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "number",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 2
+            }
+          },
+          {
+            "in": "query",
+            "name": "area",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 10.45
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "double",
+              "example": 69000
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-room"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Room successfully added"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Room** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Room instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/room-without-required-constraint"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getRoom": {
+      "get": {
+        "summary": "/getRoom",
+        "tags": [
+          "Room"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource successfully deleted"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/createApartment": {
+      "post": {
+        "summary": "Create Apartment",
+        "description": "Create a new **Apartment** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/create"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "Appartement 45"
+            }
+          },
+          {
+            "in": "query",
+            "name": "street",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Avenue Roger Salengro"
+            }
+          },
+          {
+            "in": "query",
+            "name": "zipCode",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "69000"
+            }
+          },
+          {
+            "in": "query",
+            "name": "city",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Lyon"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Client successfully added"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Unauthorized access, missing or invalid authorization access"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error from create apartment"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Apartment instance to create.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apartment"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deleteApartment": {
+      "post": {
+        "summary": "/deleteApartment",
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "Apartment resource successfully deleted"
+                    },
+                    {
+                      "type": "string",
+                      "description": "Internal server error"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/updateApartment": {
+      "post": {
+        "summary": "Update Apartment",
+        "description": "Update an existing **Apartment** record.",
+        "externalDocs": {
+          "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
+          "description": "See https://sailsjs.com/documentation/reference/blueprint-api/update"
+        },
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Jean",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Dupont",
+              "maxLength": 100
+            }
+          },
+          {
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "email",
+              "example": "nathan.trn@orange.fr"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phoneNumber",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "0637492131"
+            }
+          },
+          {
+            "in": "query",
+            "name": "birthDate",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "30/11/1997"
+            }
+          },
+          {
+            "in": "query",
+            "name": "nationality",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "example": "Français"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/ModelPKParam-apartment"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Apartment successfully updated"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Cannot update, **Apartment** record with specified ID **NOT** found"
+          },
+          "500": {
+            "description": "Internal server error from update client"
+          }
+        },
+        "requestBody": {
+          "description": "JSON dictionary representing the Apartment instance to update.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/apartment-without-required-constraint"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getApartment": {
+      "get": {
+        "summary": "/getApartment",
+        "tags": [
+          "Apartment"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Client resource successfully deleted"
+          },
+          "400": {
+            "description": "Bad request, error from the client"
+          },
+          "404": {
+            "description": "Resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}

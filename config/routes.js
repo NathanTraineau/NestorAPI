@@ -37,7 +37,6 @@ module.exports.routes = {
   'POST    /updateApartment': 'apartment/update',
   'GET    /getApartment': 'apartment/read',
 
-
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
