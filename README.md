@@ -1,26 +1,38 @@
-# clientnestorapi
+# Nestor API Test Technique
 
-a [Sails v1](https://sailsjs.com) application
+Welcome to my room reservation API.
+It has been deployed with Heroku at :
++ [Application](https://nestorapi.herokuapp.com)
+
+The endpoints of this API are listed at the swagger hosted in the application :
++ [Swagger](https://nestorapi.herokuapp.com/swagger)
+
+To develop this API used the framework SailsJS :
++ [SailsJS](https://sailsjs.com)
+
+### How to begin
+
+In order to launch the app you may clone it then enter the following commands at the root of the project:
+`npm i`
+`sails lift`
+Once you have entered it a developing server will start at the port 1337 of your localhost.
+
+The local database is sails-disk
+The database used for production is sails-postgresql.
+
+### FeedBacks
+
+I took about six hours to implement this app.
+I chose to take 1 hour on the conception.
+3 and a half hour developing the code, refactoring it.
+1 and a half hour to huild the swagger (something that I never did before with sails) and deploy the application on Heroku.
+
+### Improvement
+
+The production database migration is set to 'alter' which is not secure at all, I should have created a deploying environnement to seperate the construction of the database and the production usage of it. But I haven't had time to resolve the many bugs I encountered doing it.
 
 
-### Links
-
-+ [Sails framework documentation](https://sailsjs.com/get-started)
-+ [Version notes / upgrading](https://sailsjs.com/documentation/upgrading)
-+ [Deployment tips](https://sailsjs.com/documentation/concepts/deployment)
-+ [Community support options](https://sailsjs.com/support)
-+ [Professional / enterprise options](https://sailsjs.com/enterprise)
-
-
-### Version info
-
-This app was originally generated on Tue Sep 15 2020 11:55:45 GMT+0200 (GMT+02:00) using Sails v1.3.1.
-
-<!-- Internally, Sails used [`sails-generate@2.0.0`](https://github.com/balderdashy/sails-generate/tree/v2.0.0/lib/core-generators/new). -->
 
 
 
-<!--
-Note:  Generators are usually run using the globally-installed `sails` CLI (command-line interface).  This CLI version is _environment-specific_ rather than app-specific, thus over time, as a project's dependencies are upgraded or the project is worked on by different developers on different computers using different versions of Node.js, the Sails dependency in its package.json file may differ from the globally-installed Sails CLI release it was originally generated with.  (Be sure to always check out the relevant [upgrading guides](https://sailsjs.com/upgrading) before upgrading the version of Sails used by your app.  If you're stuck, [get help here](https://sailsjs.com/support).)
--->
 
