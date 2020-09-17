@@ -44,7 +44,7 @@ module.exports = {
       description: 'Client successfully added',
     },
     badRequest: {
-      description: 'Bad request, error from the client',
+      description: 'Bad request, the client doesn\'t exists.',
       responseType: 'badRequest'
     },
     error: {

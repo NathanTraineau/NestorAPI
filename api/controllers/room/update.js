@@ -25,7 +25,7 @@ module.exports = {
       description: 'Room successfully added',
     },
     badRequest: {
-      description: 'Bad request, error from the client',
+      description: 'Bad request, the room does not exists.',
       responseType: 'badRequest'
     },
     error: {

@@ -15,7 +15,7 @@ module.exports = {
       description: 'Client resource successfully deleted',
     },
     badRequest: {
-      description: 'Bad request, error from the client',
+      description: 'Bad request, the apartment doesn\'t exists.',
       responseType: 'badRequest'
     },
     error: {

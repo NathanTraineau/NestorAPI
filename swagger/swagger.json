@@ -700,7 +700,7 @@
             "description": "Bad request, the room does not exists"
           },
           "403": {
-            "description": "Forbidden, the room is already reserved or the client already have a room."
+            "description": "Forbidden, the client has not any room."
           },
           "404": {
             "description": "Resource not found"

@@ -20,7 +20,7 @@ module.exports = {
       responseType: 'badRequest'
     },
     forbidden : {
-      description: 'Forbidden, the room is already reserved or the client already have a room.',
+      description: 'Forbidden, the client has not any a room.',
       responseType: 'forbidden'
     },
     serverError: {

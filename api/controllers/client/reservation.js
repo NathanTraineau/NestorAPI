@@ -20,7 +20,7 @@ module.exports = {
       description: 'Client successfully added',
     },
     badRequest: {
-      description: 'Bad request, the room does not exists',
+      description: 'Bad request, the client does not exists',
       responseType: 'badRequest'
     },
     forbidden : {
