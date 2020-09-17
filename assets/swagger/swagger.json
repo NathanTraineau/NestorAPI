@@ -279,7 +279,7 @@
   "paths": {
     "/createClient": {
       "post": {
-        "summary": "Create Client",
+        "summary": "Create a Client",
         "description": "Create a new **Client** record.",
         "externalDocs": {
           "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
@@ -405,7 +405,7 @@
     },
     "/deleteClient": {
       "post": {
-        "summary": "/deleteClient",
+        "summary": "Delete a Client",
         "tags": [
           "Client"
         ],
@@ -453,7 +453,7 @@
     },
     "/updateClient": {
       "post": {
-        "summary": "Update Client",
+        "summary": "Update a Client",
         "description": "Update an existing **Client** record.",
         "externalDocs": {
           "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
@@ -561,7 +561,7 @@
     },
     "/reservationClient": {
       "post": {
-        "summary": "/reservationClient",
+        "summary": "Book a room for a Client.",
         "tags": [
           "Client"
         ],
@@ -621,7 +621,7 @@
     },
     "/vacation": {
       "post": {
-        "summary": "/vacation",
+        "summary": "Removes the reservation from a Client.",
         "tags": [
           "Client"
         ],
@@ -659,7 +659,7 @@
             "description": "Bad request, the room does not exists"
           },
           "403": {
-            "description": "Forbidden, the room is already reserved or the client already have a room."
+            "description": "Forbidden, the client has not any room."
           },
           "404": {
             "description": "Resource not found"
@@ -672,7 +672,7 @@
     },
     "/getClient": {
       "get": {
-        "summary": "/getClient",
+        "summary": "Get one or all of the Clients.",
         "tags": [
           "Client"
         ],
@@ -704,7 +704,7 @@
     },
     "/createRoom": {
       "post": {
-        "summary": "Create Room",
+        "summary": "Create a Room",
         "description": "Create a new **Room** record.",
         "externalDocs": {
           "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
@@ -803,7 +803,7 @@
     },
     "/deleteRoom": {
       "post": {
-        "summary": "/deleteRoom",
+        "summary": "Delete a Room",
         "tags": [
           "Room"
         ],
@@ -854,7 +854,7 @@
     },
     "/updateRoom": {
       "post": {
-        "summary": "Update Room",
+        "summary": "Update a Room",
         "description": "Update an existing **Room** record.",
         "externalDocs": {
           "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
@@ -927,7 +927,7 @@
     },
     "/getRoom": {
       "get": {
-        "summary": "/getRoom",
+        "summary": "Get one or all of the Rooms.",
         "tags": [
           "Room"
         ],
@@ -959,7 +959,7 @@
     },
     "/createApartment": {
       "post": {
-        "summary": "Create Apartment",
+        "summary": "Create an Apartment",
         "description": "Create a new **Apartment** record.",
         "externalDocs": {
           "url": "https://sailsjs.com/documentation/reference/blueprint-api/create",
@@ -1055,7 +1055,7 @@
     },
     "/deleteApartment": {
       "post": {
-        "summary": "/deleteApartment",
+        "summary": "Delete an Apartment.",
         "tags": [
           "Apartment"
         ],
@@ -1103,7 +1103,7 @@
     },
     "/updateApartment": {
       "post": {
-        "summary": "Update Apartment",
+        "summary": "Update an Apartment",
         "description": "Update an existing **Apartment** record.",
         "externalDocs": {
           "url": "https://sailsjs.com/documentation/reference/blueprint-api/update",
@@ -1211,7 +1211,7 @@
     },
     "/getApartment": {
       "get": {
-        "summary": "/getApartment",
+        "summary": "Get one or all of the Apartments.",
         "tags": [
           "Apartment"
         ],
