@@ -35,8 +35,4 @@ I chose to take 1 hour on the conception.
 
 The production database migration is set to 'alter' which is not secure at all, I should have created a deploying environnement to seperate the construction of the database and the production usage of it. But I haven't had time to resolve the many bugs I encountered doing it.
 
-
-
-
-
-
+I regret that I had not the time to build tests and I only used postman to check whether a route worked or not. Testing could have been very useful, to be sure that the refactoring didn't broke any process or to set up a proper CI with Circle. I have never implemented tests on Node yet but it will be for sure my next formation.
