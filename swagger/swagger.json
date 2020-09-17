@@ -578,7 +578,7 @@
             "description": "Client successfully added"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the client doesn't exists."
           },
           "404": {
             "description": "Cannot update, **Client** record with specified ID **NOT** found"
@@ -646,7 +646,7 @@
             }
           },
           "400": {
-            "description": "Bad request, the room does not exists"
+            "description": "Bad request, the client does not exists"
           },
           "403": {
             "description": "Forbidden, the room is already reserved or the client already have a room."
@@ -944,7 +944,7 @@
             "description": "Room successfully added"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the room does not exists."
           },
           "404": {
             "description": "Cannot update, **Room** record with specified ID **NOT** found"
@@ -1228,7 +1228,7 @@
             "description": "Apartment successfully updated"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the apartment doesn't exists."
           },
           "404": {
             "description": "Cannot update, **Apartment** record with specified ID **NOT** found"
@@ -1271,7 +1271,7 @@
             "description": "Client resource successfully deleted"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the apartment doesn't exists."
           },
           "404": {
             "description": "Resource not found"
@@ -1699,7 +1699,7 @@
             "description": "Apartment successfully updated"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the apartment doesn't exists."
           },
           "404": {
             "description": "Cannot update, **Apartment** record with specified ID **NOT** found"
@@ -2339,7 +2339,7 @@
             "description": "Client successfully added"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the client doesn't exists."
           },
           "404": {
             "description": "Cannot update, **Client** record with specified ID **NOT** found"
@@ -2955,7 +2955,7 @@
             "description": "Room successfully added"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the room does not exists."
           },
           "404": {
             "description": "Cannot update, **Room** record with specified ID **NOT** found"
@@ -3327,7 +3327,7 @@
             "description": "Apartment successfully updated"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the apartment doesn't exists."
           },
           "404": {
             "description": "Cannot update, **Apartment** record with specified ID **NOT** found"
@@ -4018,7 +4018,7 @@
             "description": "Client successfully added"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the client doesn't exists."
           },
           "404": {
             "description": "Cannot update, **Client** record with specified ID **NOT** found"
@@ -4647,7 +4647,7 @@
             "description": "Room successfully added"
           },
           "400": {
-            "description": "Bad request, error from the client"
+            "description": "Bad request, the room does not exists."
           },
           "404": {
             "description": "Cannot update, **Room** record with specified ID **NOT** found"
